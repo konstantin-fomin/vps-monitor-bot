@@ -1,0 +1,16 @@
+services:
+  vps-monitor-bot:
+    build: .
+    container_name: vps-monitor-bot
+    restart: unless-stopped
+    environment:
+      BOT_TOKEN: "${BOT_TOKEN}"
+      ALLOWED_CHAT_ID: "${ALLOWED_CHAT_ID}"
+      DEVICE_NAMES: "${DEVICE_NAMES}"
+      CLIENT_ALIASES: "${CLIENT_ALIASES}"
+      ONLINE_SECONDS_THRESHOLD: "${ONLINE_SECONDS_THRESHOLD:-180}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    read_only: true
+    tmpfs:
+      - /tmp
