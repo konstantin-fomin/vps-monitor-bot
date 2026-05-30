@@ -67,7 +67,7 @@ def human_bytes(num: float) -> str:
 
 def is_allowed(update: Update) -> bool:
     if not ALLOWED_CHAT_ID:
-        return True
+        return False
 
     chat_id = update.effective_chat.id if update.effective_chat else None
     return str(chat_id) == ALLOWED_CHAT_ID
@@ -592,6 +592,8 @@ async def on_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 def main() -> None:
     if not BOT_TOKEN:
         raise RuntimeError("BOT_TOKEN environment variable is not set")
+    if not ALLOWED_CHAT_ID:
+        raise RuntimeError("ALLOWED_CHAT_ID is required for safety")
 
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 

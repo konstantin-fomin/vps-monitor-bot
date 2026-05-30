@@ -102,8 +102,17 @@ vps-monitor-bot/
 ## 🔒 Безопасность
 
 - Никогда не коммить `.env` — токен и chat ID должны быть только на сервере
-- `ALLOWED_CHAT_ID` ограничивает доступ к боту одним пользователем
-- Бот использует Docker socket для инспекции контейнеров — держи репозиторий приватным
+- `ALLOWED_CHAT_ID` обязателен: бот не стартует без явно заданного chat ID
+- Docker socket даёт широкие возможности инспекции контейнеров и требует аккуратного деплоя
+
+---
+
+## 🔐 Security notes
+
+- `ALLOWED_CHAT_ID` is required for safety and must be set before starting the bot.
+- Docker socket access is powerful and should be used carefully.
+- `.env` must not be committed; keep real tokens and chat IDs only on the server.
+- Screenshots should not include tokens, public IPs, endpoints, chat IDs, or raw VPN output.
 
 ---
 
